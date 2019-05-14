@@ -15,6 +15,11 @@ public class ChiffreRomain_test {
 	}
 	
 	@Test
+	public void test3() {
+		assertEquals("III", convertNumberToRoman(3));
+	}
+	
+	@Test
 	public void test4() {
 		assertEquals("IV", convertNumberToRoman(4));
 	}
@@ -25,13 +30,18 @@ public class ChiffreRomain_test {
 	}
 	
 	@Test
-	public void test10() {
-		assertEquals("X", convertNumberToRoman(10));
+	public void test6() {
+		assertEquals("VI", convertNumberToRoman(6));
 	}
 	
 	@Test
-	public void test6() {
-		assertEquals("VI", convertNumberToRoman(6));
+	public void test7() {
+		assertEquals("VII", convertNumberToRoman(7));
+	}
+	
+	@Test
+	public void test8() {
+		assertEquals("VIII", convertNumberToRoman(8));
 	}
 	
 	@Test
@@ -40,19 +50,33 @@ public class ChiffreRomain_test {
 	}
 	
 	@Test
-	public void test7() {
-		assertEquals("VII", convertNumberToRoman(7));
+	public void test10() {
+		assertEquals("X", convertNumberToRoman(10));
 	}
 	
+	@Test
+	public void test14() {
+		assertEquals("XIV", convertNumberToRoman(14));
+	}
 	
-
 	public String convertNumberToRoman(int nombre) {
 		String nombreRoman = "";
+		
+		if (nombre > 9) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i <= nombre ; i=i+10) {
+				sb.append(charRoman(10));
+				nombre -= 10;
+			}
+			nombreRoman = sb.toString();
+		}
 		
 		if( nombre == 1) {
 			nombreRoman += charRoman(1);
 		} else if (nombre == 2) {
 			nombreRoman += charRoman(2);
+		} else if (nombre == 3) {
+			nombreRoman += charRoman(3);
 		} else if (nombre % 10 == 10-1) {
 			nombreRoman += charRoman(1);
 			nombreRoman += charRoman(10);
@@ -65,8 +89,11 @@ public class ChiffreRomain_test {
 		} else if (nombre % 5 == 2) {
 			nombreRoman += charRoman(5);
 			nombreRoman += charRoman(2);
+		} else if (nombre % 5 == 3) {
+			nombreRoman += charRoman(5);
+			nombreRoman += charRoman(3);
 		}
-			else  {
+		else {
 			nombreRoman += charRoman(nombre);
 		}
 		
